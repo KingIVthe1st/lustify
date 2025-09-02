@@ -1,405 +1,1249 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="light" style="color-scheme: light;">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lustify AI - AI Avatar Content Generation</title>
-    <meta name="description" content="Create stunning AI-generated avatar content with advanced Grok AI technology">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lustify AI - Create Your Own AI Influencer In Minutes</title>
+    
+    <!-- External CSS Files -->
     <style>
+        /* Tailwind CSS Base - Main Styles */
+        *,:after,:before{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246/0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246/0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }
+
+        /* Font Faces */
+        @font-face{font-family:Inter;font-style:normal;font-weight:100 900;font-display:swap;src:url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap') format("woff2")}
+
+        /* Root Variables */
         :root {
-            --primary-color: #8b5cf6;
-            --secondary-color: #6366f1;
-            --accent-color: #f59e0b;
-            --dark-bg: #0f0f23;
-            --card-bg: #1e1b4b;
-            --text-primary: #ffffff;
-            --text-secondary: #a5b4fc;
-            --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --background: 222.2 84% 4.9%;
+            --foreground: 210 40% 98%;
+            --card: 222.2 84% 4.9%;
+            --card-foreground: 210 40% 98%;
+            --popover: 222.2 84% 4.9%;
+            --popover-foreground: 210 40% 98%;
+            --primary: 47.9 95.8% 53.1%;
+            --primary-foreground: 26 83.3% 14.1%;
+            --secondary: 217.2 32.6% 17.5%;
+            --secondary-foreground: 210 40% 98%;
+            --muted: 217.2 32.6% 17.5%;
+            --muted-foreground: 215 20.2% 65.1%;
+            --accent: 217.2 32.6% 17.5%;
+            --accent-foreground: 210 40% 98%;
+            --destructive: 0 62.8% 30.6%;
+            --destructive-foreground: 210 40% 98%;
+            --border: 217.2 32.6% 17.5%;
+            --input: 217.2 32.6% 17.5%;
+            --ring: 47.9 95.8% 53.1%;
+            --radius: 0.5rem;
         }
 
+        /* Base Styles */
         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+            border-color: hsl(var(--border));
+        }
+
+        html {
+            font-family: Inter, ui-sans-serif, system-ui, sans-serif;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: var(--dark-bg);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
+            background-color: hsl(var(--background));
+            color: hsl(var(--foreground));
+            font-feature-settings: "rlig" 1, "calt" 1;
         }
 
-        /* Animated background */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 40% 80%, rgba(245, 158, 11, 0.1) 0%, transparent 50%);
-            z-index: -1;
-        }
+        /* Utility Classes */
+        .bg-background { background-color: hsl(var(--background)); }
+        .text-white { color: rgb(255 255 255); }
+        .text-white\/70 { color: rgb(255 255 255 / 0.7); }
+        .text-white\/50 { color: rgb(255 255 255 / 0.5); }
+        .text-white\/80 { color: rgb(255 255 255 / 0.8); }
+        .text-black { color: rgb(0 0 0); }
+        .text-amber-400 { color: rgb(251 191 36); }
+        .bg-black { background-color: rgb(0 0 0); }
+        .bg-zinc-900 { background-color: rgb(24 24 27); }
+        .bg-amber-400 { background-color: rgb(251 191 36); }
+        .bg-amber-400\/10 { background-color: rgb(251 191 36 / 0.1); }
+        .bg-amber-400\/90 { background-color: rgb(251 191 36 / 0.9); }
+        .bg-amber-600\/90 { background-color: rgb(217 119 6 / 0.9); }
+        .bg-gradient-to-r { background-image: linear-gradient(to right, var(--tw-gradient-stops)); }
+        .from-amber-400 { --tw-gradient-from: #fbbf24 var(--tw-gradient-from-position); --tw-gradient-to: rgb(251 191 36 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+        .to-amber-600 { --tw-gradient-to: #d97706 var(--tw-gradient-to-position); }
+        .hover\:from-amber-500:hover { --tw-gradient-from: #f59e0b var(--tw-gradient-from-position); --tw-gradient-to: rgb(245 158 11 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+        .hover\:to-amber-700:hover { --tw-gradient-to: #b45309 var(--tw-gradient-to-position); }
+        .bg-gradient-to-b { background-image: linear-gradient(to bottom, var(--tw-gradient-stops)); }
+        .from-black { --tw-gradient-from: #000 var(--tw-gradient-from-position); --tw-gradient-to: rgb(0 0 0 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+        .via-transparent { --tw-gradient-to: rgb(0 0 0 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), transparent var(--tw-gradient-via-position), var(--tw-gradient-to); }
+        .to-black { --tw-gradient-to: #000 var(--tw-gradient-to-position); }
+        .from-amber-400\/10 { --tw-gradient-from: rgb(251 191 36 / 0.1) var(--tw-gradient-from-position); --tw-gradient-to: rgb(251 191 36 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+        .to-amber-600\/10 { --tw-gradient-to: rgb(217 119 6 / 0.1) var(--tw-gradient-to-position); }
+        .bg-gradient-to-t { background-image: linear-gradient(to top, var(--tw-gradient-stops)); }
+        .from-black\/90 { --tw-gradient-from: rgb(0 0 0 / 0.9) var(--tw-gradient-from-position); --tw-gradient-to: rgb(0 0 0 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+        .from-zinc-900 { --tw-gradient-from: #18181b var(--tw-gradient-from-position); --tw-gradient-to: rgb(24 24 27 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+        .to-transparent { --tw-gradient-to: transparent var(--tw-gradient-to-position); }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
+        /* Layout */
+        .container { width: 100%; margin-left: auto; margin-right: auto; padding-left: 1rem; padding-right: 1rem; }
+        @media (min-width: 640px) { .container { max-width: 640px; } }
+        @media (min-width: 768px) { .container { max-width: 768px; } }
+        @media (min-width: 1024px) { .container { max-width: 1024px; } }
+        @media (min-width: 1280px) { .container { max-width: 1280px; } }
+        @media (min-width: 1536px) { .container { max-width: 1536px; } }
 
-        /* Header */
-        header {
-            background: rgba(15, 15, 35, 0.9);
-            backdrop-filter: blur(10px);
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
+        .flex { display: flex; }
+        .inline-flex { display: inline-flex; }
+        .grid { display: grid; }
+        .hidden { display: none; }
+        .block { display: block; }
+        .inline-block { display: inline-block; }
+        .h-full { height: 100%; }
+        .h-16 { height: 4rem; }
+        .h-9 { height: 2.25rem; }
+        .h-10 { height: 2.5rem; }
+        .h-4 { width: 1rem; height: 1rem; }
+        .h-3 { width: 0.75rem; height: 0.75rem; }
+        .h-8 { height: 2rem; }
+        .h-48 { height: 12rem; }
+        .h-2 { height: 0.5rem; }
+        .h-5 { height: 1.25rem; }
+        .w-full { width: 100%; }
+        .w-4 { width: 1rem; }
+        .w-3 { width: 0.75rem; }
+        .w-8 { width: 2rem; }
+        .w-16 { width: 4rem; }
+        .w-2 { width: 0.5rem; }
+        .w-5 { width: 1.25rem; }
+        .w-0\.5 { width: 0.125rem; }
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+        /* Spacing */
+        .px-4 { padding-left: 1rem; padding-right: 1rem; }
+        .px-3 { padding-left: 0.75rem; padding-right: 0.75rem; }
+        .px-8 { padding-left: 2rem; padding-right: 2rem; }
+        .px-2 { padding-left: 0.5rem; padding-right: 0.5rem; }
+        .py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+        .py-1 { padding-top: 0.25rem; padding-bottom: 0.25rem; }
+        .py-6 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+        .py-20 { padding-top: 5rem; padding-bottom: 5rem; }
+        .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+        .py-12 { padding-top: 3rem; padding-bottom: 3rem; }
+        .pt-0 { padding-top: 0px; }
+        .pt-8 { padding-top: 2rem; }
+        .p-4 { padding: 1rem; }
+        .p-6 { padding: 1.5rem; }
+        .p-8 { padding: 2rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mb-2 { margin-bottom: 0.5rem; }
+        .mb-1 { margin-bottom: 0.25rem; }
+        .mt-8 { margin-top: 2rem; }
+        .mt-4 { margin-top: 1rem; }
+        .mt-12 { margin-top: 3rem; }
+        .ml-2 { margin-left: 0.5rem; }
+        .mr-2 { margin-right: 0.5rem; }
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+        /* Flexbox and Grid */
+        .items-center { align-items: center; }
+        .items-baseline { align-items: baseline; }
+        .justify-center { justify-content: center; }
+        .justify-between { justify-content: space-between; }
+        .flex-col { flex-direction: column; }
+        .flex-1 { flex: 1 1 0%; }
+        .shrink-0 { flex-shrink: 0; }
+        .space-y-4 > :not([hidden]) ~ :not([hidden]) { --tw-space-y-reverse: 0; margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse))); margin-bottom: calc(1rem * var(--tw-space-y-reverse)); }
+        .space-y-2 > :not([hidden]) ~ :not([hidden]) { --tw-space-y-reverse: 0; margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse))); margin-bottom: calc(0.5rem * var(--tw-space-y-reverse)); }
+        .space-y-1\.5 > :not([hidden]) ~ :not([hidden]) { --tw-space-y-reverse: 0; margin-top: calc(0.375rem * calc(1 - var(--tw-space-y-reverse))); margin-bottom: calc(0.375rem * var(--tw-space-y-reverse)); }
+        .gap-2 { gap: 0.5rem; }
+        .gap-4 { gap: 1rem; }
+        .gap-6 { gap: 1.5rem; }
+        .gap-8 { gap: 2rem; }
+        .gap-1 { gap: 0.25rem; }
+        .grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+        .grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        .-space-x-2 > :not([hidden]) ~ :not([hidden]) { --tw-space-x-reverse: 0; margin-right: calc(-0.5rem * var(--tw-space-x-reverse)); margin-left: calc(-0.5rem * calc(1 - var(--tw-space-x-reverse))); }
 
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
+        /* Typography */
+        .font-bold { font-weight: 700; }
+        .font-medium { font-weight: 500; }
+        .font-semibold { font-weight: 600; }
+        .font-sans { font-family: Inter, ui-sans-serif, system-ui, sans-serif; }
+        .text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+        .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+        .text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+        .text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+        .text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+        .text-base { font-size: 1rem; line-height: 1.5rem; }
+        .text-xs { font-size: 0.75rem; line-height: 1rem; }
+        .text-2xl { font-size: 1.5rem; line-height: 2rem; }
+        .text-5xl { font-size: 3rem; line-height: 1; }
+        .text-6xl { font-size: 3.75rem; line-height: 1; }
+        .text-7xl { font-size: 4.5rem; line-height: 1; }
+        .text-center { text-align: center; }
+        .line-clamp-2 { overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+        .line-through { text-decoration-line: line-through; }
+        .leading-none { line-height: 1; }
+        .leading-relaxed { line-height: 1.625; }
+        .tracking-tighter { letter-spacing: -0.05em; }
+        .tracking-tight { letter-spacing: -0.025em; }
+        .antialiased { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
+        /* Positioning and Layout */
+        .relative { position: relative; }
+        .absolute { position: absolute; }
+        .sticky { position: sticky; }
+        .fixed { position: fixed; }
+        .inset-0 { inset: 0px; }
+        .top-0 { top: 0px; }
+        .top-2 { top: 0.5rem; }
+        .right-2 { right: 0.5rem; }
+        .right-4 { right: 1rem; }
+        .right-6 { right: 1.5rem; }
+        .bottom-0 { bottom: 0px; }
+        .left-0 { left: 0px; }
+        .top-1\/2 { top: 50%; }
+        .-translate-y-1\/2 { --tw-translate-y: -50%; transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)); }
+        .translate-x-1\/2 { --tw-translate-x: 50%; transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)); }
+        .z-40 { z-index: 40; }
+        .z-10 { z-index: 10; }
+        .z-0 { z-index: 0; }
 
-        .nav-links a:hover {
-            color: var(--primary-color);
-        }
+        /* Overflow */
+        .overflow-hidden { overflow: hidden; }
+        .overflow-auto { overflow: auto; }
+        .overscroll-none { overscroll-behavior: none; }
 
-        .auth-buttons {
-            display: flex;
-            gap: 1rem;
-        }
+        /* Border */
+        .rounded-md { border-radius: 0.375rem; }
+        .rounded-lg { border-radius: 0.5rem; }
+        .rounded-full { border-radius: 9999px; }
+        .rounded-xl { border-radius: 0.75rem; }
+        .rounded-3xl { border-radius: 1.5rem; }
+        .border { border-width: 1px; }
+        .border-2 { border-width: 2px; }
+        .border-b { border-bottom-width: 1px; }
+        .border-t { border-top-width: 1px; }
+        .border-white\/10 { border-color: rgb(255 255 255 / 0.1); }
+        .border-white\/20 { border-color: rgb(255 255 255 / 0.2); }
+        .border-amber-400 { border-color: rgb(251 191 36); }
+        .border-amber-400\/20 { border-color: rgb(251 191 36 / 0.2); }
+        .border-green-500\/30 { border-color: rgb(34 197 94 / 0.3); }
 
-        /* Buttons */
-        .btn {
-            padding: 0.75rem 2rem;
-            border: none;
-            border-radius: 50px;
-            font-weight: 600;
+        /* Shadow and Effects */
+        .shadow-sm { box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); }
+        .filter { filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow); }
+        .blur-sm { --tw-blur: blur(4px); filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow); }
+        .backdrop-blur { --tw-backdrop-blur: blur(8px); -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia); backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia); }
+        .backdrop-blur-sm { --tw-backdrop-blur: blur(4px); -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia); backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia); }
+        .opacity-20 { opacity: 0.2; }
+
+        /* Aspect Ratio */
+        .aspect-\[3\/4\] { aspect-ratio: 3 / 4; }
+
+        /* Object Fit */
+        .object-cover { object-fit: cover; }
+        .object-top { object-position: top; }
+
+        /* Transforms */
+        .group:hover .group-hover\:scale-105 { --tw-scale-x: 1.05; --tw-scale-y: 1.05; transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)); }
+
+        /* Transitions */
+        .transition-colors { transition-property: color, background-color, border-color, text-decoration-color, fill, stroke; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
+        .transition-transform { transition-property: transform; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
+        .transition-all { transition-property: all; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
+        .duration-300 { transition-duration: 300ms; }
+        .duration-200 { transition-duration: 200ms; }
+
+        /* Animation */
+        .animate-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
+
+        /* States */
+        .hover\:text-white:hover { color: rgb(255 255 255); }
+        .hover\:text-amber-400:hover { color: rgb(251 191 36); }
+        .hover\:bg-white\/20:hover { background-color: rgb(255 255 255 / 0.2); }
+        .hover\:bg-white\/10:hover { background-color: rgb(255 255 255 / 0.1); }
+        .hover\:text-black:hover { color: rgb(0 0 0); }
+        .hover\:underline:hover { text-decoration-line: underline; }
+        .visited\:text-white\/70:visited { color: rgb(255 255 255 / 0.7); }
+        .focus-visible\:outline-none:focus-visible { outline: 2px solid transparent; outline-offset: 2px; }
+        .focus-visible\:ring-2:focus-visible { --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color); --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color); box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000); }
+        .disabled\:pointer-events-none:disabled { pointer-events: none; }
+        .disabled\:opacity-50:disabled { opacity: 0.5; }
+
+        /* Ring */
+        .ring-offset-background { --tw-ring-offset-color: hsl(var(--background)); }
+        .ring-offset-2 { --tw-ring-offset-width: 2px; }
+
+        /* Button Styles */
+        .inline-flex.items-center.justify-center.whitespace-nowrap.text-sm.font-medium {
+            border-radius: 0.375rem;
+            height: 2.25rem;
+            padding-left: 0.75rem;
+            padding-right: 0.75rem;
             cursor: pointer;
-            transition: all 0.3s;
+            border: none;
             text-decoration: none;
-            display: inline-block;
-            text-align: center;
-        }
-
-        .btn-primary {
-            background: var(--gradient);
-            color: white;
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--primary-color);
-            border: 2px solid var(--primary-color);
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow);
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            text-align: center;
-            position: relative;
-        }
-
-        .hero-content h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-content p {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
             justify-content: center;
-            flex-wrap: wrap;
+            white-space: nowrap;
+            font-size: 0.875rem;
+            font-weight: 500;
         }
 
-        /* Features Section */
-        .features {
-            padding: 5rem 0;
-            background: rgba(30, 27, 75, 0.3);
+        /* Custom utility classes */
+        .min-h-screen { min-height: 100vh; }
+        .max-w-3xl { max-width: 48rem; }
+        .max-w-\[700px\] { max-width: 700px; }
+        .max-w-\[600px\] { max-width: 600px; }
+        .mx-auto { margin-left: auto; margin-right: auto; }
+        .w-fit { width: fit-content; }
+        .supports-\[backdrop-filter\]\:bg-black\/60 { background-color: rgb(0 0 0 / 0.6); }
+
+        /* Green success indicator */
+        .bg-green-500\/20 { background-color: rgb(34 197 94 / 0.2); }
+        .text-green-400 { color: rgb(74 222 128); }
+
+        /* Custom scrollbar */
+        .thin-light-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .thin-light-scrollbar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .thin-light-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 3px;
+        }
+        .thin-light-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.5);
         }
 
-        .features h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
+        /* Custom background patterns */
+        .bg-grid-white\/5 {
+            background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
         }
 
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+        /* Mask image */
+        .\[mask-image\:linear-gradient\(to_bottom_left\2c white\2c transparent\2c transparent\)\] {
+            -webkit-mask-image: linear-gradient(to bottom left, white, transparent, transparent);
+            mask-image: linear-gradient(to bottom left, white, transparent, transparent);
         }
 
-        .feature-card {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 20px;
-            text-align: center;
-            transition: transform 0.3s;
-            border: 1px solid rgba(139, 92, 246, 0.2);
+        /* Text decoration */
+        .whitespace-nowrap { white-space: nowrap; }
+
+        /* Screen reader only */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
         }
 
-        .feature-card:hover {
-            transform: translateY(-10px);
+        /* Responsive Design */
+        @media (min-width: 640px) {
+            .sm\:text-5xl { font-size: 3rem; line-height: 1; }
+            .sm\:text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+            .sm\:flex-row { flex-direction: row; }
         }
 
-        .feature-icon {
-            font-size: 3rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
+        @media (min-width: 768px) {
+            .md\:px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+            .md\:py-32 { padding-top: 8rem; padding-bottom: 8rem; }
+            .md\:text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+            .md\:text-5xl { font-size: 3rem; line-height: 1; }
+            .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+            .md\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+            .md\:grid-cols-6 { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+            .md\:flex { display: flex; }
+            .md\:hidden { display: none; }
+            .md\:block { display: block; }
+            .md\:flex-row { flex-direction: row; }
+            .md\:p-16 { padding: 4rem; }
+            .md\:mt-0 { margin-top: 0px; }
         }
 
-        /* Status Section */
-        .status {
-            padding: 3rem 0;
-            text-align: center;
+        @media (min-width: 1024px) {
+            .lg\:text-7xl { font-size: 4.5rem; line-height: 1; }
+            .lg\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+            .lg\:grid-cols-8 { grid-template-columns: repeat(8, minmax(0, 1fr)); }
         }
 
-        .status-card {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 15px;
-            margin: 2rem auto;
-            max-width: 600px;
-        }
-
-        .status-indicator {
-            display: inline-block;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            margin-right: 0.5rem;
-        }
-
-        .status-online { background: #10b981; }
-        .status-offline { background: #ef4444; }
-        .status-loading { background: var(--accent-color); }
-
-        /* Footer */
-        footer {
-            background: var(--card-bg);
-            padding: 2rem 0;
-            text-align: center;
-            margin-top: 5rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
+        /* Accordion animation */
+        @keyframes accordion-down {
+            from {
+                height: 0;
             }
-            
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .container {
-                padding: 0 1rem;
+            to {
+                height: var(--radix-accordion-content-height);
             }
         }
+
+        @keyframes accordion-up {
+            from {
+                height: var(--radix-accordion-content-height);
+            }
+            to {
+                height: 0;
+            }
+        }
+
+        .data-\[state\=closed\]\:animate-accordion-up[data-state="closed"] {
+            animation: accordion-up 0.2s ease-out;
+        }
+
+        .data-\[state\=open\]\:animate-accordion-down[data-state="open"] {
+            animation: accordion-down 0.2s ease-out;
+        }
+
+        /* Additional layout utilities */
+        .cursor-pointer { cursor: pointer; }
     </style>
-</head>
-<body>
-    <header>
-        <nav class="container">
-            <div class="logo">Lustify AI</div>
-            <ul class="nav-links">
-                <li><a href="#features">Features</a></li>
-                <li><a href="#pricing">Pricing</a></li>
-                <li><a href="#about">About</a></li>
-            </ul>
-            <div class="auth-buttons">
-                <a href="#" class="btn btn-secondary" onclick="handleLogin()">Login</a>
-                <a href="#" class="btn btn-primary" onclick="handleSignup()">Sign Up</a>
-            </div>
-        </nav>
-    </header>
 
-    <main>
-        <section class="hero">
-            <div class="container">
-                <div class="hero-content">
-                    <h1>Create Stunning AI Avatars</h1>
-                    <p>Generate professional AI avatar content with advanced Grok AI technology. Create images, videos, and build your digital persona with ease.</p>
-                    <div class="hero-buttons">
-                        <a href="#" class="btn btn-primary" onclick="handleGetStarted()">Get Started Free</a>
-                        <a href="#features" class="btn btn-secondary">Learn More</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="status">
-            <div class="container">
-                <div class="status-card">
-                    <h3>Backend Status</h3>
-                    <p id="backend-status">
-                        <span class="status-indicator status-loading"></span>
-                        Checking connection...
-                    </p>
-                    <p id="backend-url" style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 1rem;">
-                        Backend: <span id="api-url">https://lustify-ai-backend.onrender.com</span>
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <section class="features" id="features">
-            <div class="container">
-                <h2>Powerful Features</h2>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-user-circle"></i>
-                        </div>
-                        <h3>AI Avatar Creation</h3>
-                        <p>Create consistent, professional AI avatars with detailed customization options and personality traits.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-image"></i>
-                        </div>
-                        <h3>Image Generation</h3>
-                        <p>Generate high-quality images with your AI avatars using advanced Grok AI technology.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-video"></i>
-                        </div>
-                        <h3>Video Content</h3>
-                        <p>Transform your images into engaging video content with AI-powered animation and effects.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <h3>Analytics Dashboard</h3>
-                        <p>Track your content performance, credit usage, and generation statistics in real-time.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-credit-card"></i>
-                        </div>
-                        <h3>Flexible Pricing</h3>
-                        <p>Credit-based system with subscription options to fit your content creation needs.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <h3>Secure & Private</h3>
-                        <p>Enterprise-grade security with JWT authentication and encrypted data storage.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Lustify AI. All rights reserved.</p>
-        </div>
-    </footer>
-
+    <meta name="theme-color" content="#ffffff" id="theme-color">
+    
+    <!-- Theme Script -->
     <script>
-        const API_BASE_URL = 'https://lustify-ai-backend.onrender.com';
+        try {
+            const savedTheme = localStorage.getItem('theme');
+            const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const isDark = savedTheme === 'dark' || (savedTheme !== 'light' && systemDark);
 
-        // Check backend status
-        async function checkBackendStatus() {
-            const statusElement = document.getElementById('backend-status');
-            try {
-                const response = await fetch(`${API_BASE_URL}/health`);
-                if (response.ok) {
-                    statusElement.innerHTML = `
-                        <span class="status-indicator status-online"></span>
-                        Backend Online & Ready
-                    `;
-                } else {
-                    throw new Error('Backend not responding');
-                }
-            } catch (error) {
-                statusElement.innerHTML = `
-                    <span class="status-indicator status-offline"></span>
-                    Backend Offline - Deploying...
-                `;
-                // Retry in 10 seconds
-                setTimeout(checkBackendStatus, 10000);
-            }
-        }
-
-        // Auth handlers
-        function handleLogin() {
-            window.open(`${API_BASE_URL}/auth/login`, '_blank');
-        }
-
-        function handleSignup() {
-            window.open(`${API_BASE_URL}/auth/register`, '_blank');
-        }
-
-        function handleGetStarted() {
-            window.open(`${API_BASE_URL}/auth/register`, '_blank');
-        }
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
-            checkBackendStatus();
-        });
+            document.documentElement.classList.toggle('dark', isDark);
+            document.getElementById('theme-color').setAttribute(
+                'content',
+                isDark ? '#09090b' : '#ffffff'
+            );
+        } catch (e) {}
     </script>
+    
+    <link rel="icon" href="https://creatorcoreai.com/favicon.ico" type="image/x-icon">
+</head>
+
+<body class="bg-background font-sans antialiased theme-default">
+    <main class="min-h-screen bg-[#111827]">
+        <!-- Top Banner -->
+        <div class="bg-gradient-to-r from-amber-400 to-amber-600 text-black py-2 px-4 relative">
+            <div class="container mx-auto flex items-center justify-center">
+                <div class="flex items-center gap-2 text-sm font-medium">
+                    <div class="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                    <span>🚀 AI Influencer Creation — Try it now with 50% off your first month</span>
+                </div>
+                <button class="absolute right-4 top-1/2 -translate-y-1/2 text-black/80 hover:text-black">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" aria-hidden="true">
+                        <path d="M18 6 6 18"></path>
+                        <path d="m6 6 12 12"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Header -->
+        <header class="sticky top-0 z-40 w-full border-b border-white/10 bg-black/95 backdrop-blur supports-[backdrop-filter]:bg-black/60">
+            <div class="container flex h-16 items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <a href="/">
+                        <span class="font-bold text-xl">
+                            <span class="text-white">lustify</span><span class="text-amber-400">ai</span>
+                        </span>
+                    </a>
+                </div>
+                <nav class="hidden md:flex items-center gap-6">
+                    <a class="text-sm font-medium text-white/70 visited:text-white/70 hover:text-white" href="#how-it-works">How It Works</a>
+                    <a class="text-sm font-medium text-white/70 visited:text-white/70 hover:text-white" href="#showcase">Showcase</a>
+                    <a class="text-sm font-medium text-white/70 visited:text-white/70 hover:text-white" href="#pricing">Pricing</a>
+                    <a class="text-sm font-medium text-white/70 visited:text-white/70 hover:text-white" href="/faq">FAQ</a>
+                </nav>
+                <div class="flex items-center gap-4">
+                    <a class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent h-9 rounded-md px-3 text-white/70 hover:text-white hover:bg-white/20" href="/sign-in">Log In</a>
+                    <a class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 h-9 rounded-md px-3 bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-black" href="/sign-up">Sign Up</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="flex flex-col min-h-screen bg-black text-white">
+            <main class="flex-1">
+                <!-- Hero Section -->
+                <section class="relative py-20 md:py-32 overflow-hidden">
+                    <div class="absolute inset-0 z-0 opacity-20">
+                        <div class="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black z-10"></div>
+                        <div class="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4 p-4 h-full w-full">
+                            <!-- Background Influencer Images Grid -->
+                            <div class="aspect-[3/4] rounded-lg overflow-hidden">
+                                <img src="https://creatorcoreai.com/influencer-emma.png" alt="" class="w-full h-full object-cover filter blur-sm">
+                            </div>
+                            <div class="aspect-[3/4] rounded-lg overflow-hidden">
+                                <img src="https://creatorcoreai.com/influencer-sophia.png" alt="" class="w-full h-full object-cover filter blur-sm">
+                            </div>
+                            <div class="aspect-[3/4] rounded-lg overflow-hidden">
+                                <img src="https://creatorcoreai.com/influencer-isabella.png" alt="" class="w-full h-full object-cover filter blur-sm">
+                            </div>
+                            <div class="aspect-[3/4] rounded-lg overflow-hidden">
+                                <img src="https://creatorcoreai.com/influencer-olivia.png" alt="" class="w-full h-full object-cover filter blur-sm">
+                            </div>
+                            <div class="aspect-[3/4] rounded-lg overflow-hidden">
+                                <img src="https://creatorcoreai.com/influencer-ava.png" alt="" class="w-full h-full object-cover filter blur-sm">
+                            </div>
+                            <div class="aspect-[3/4] rounded-lg overflow-hidden">
+                                <img src="https://creatorcoreai.com/influencer-mia.png" alt="" class="w-full h-full object-cover filter blur-sm">
+                            </div>
+                            <div class="aspect-[3/4] rounded-lg overflow-hidden">
+                                <img src="https://creatorcoreai.com/influencer-charlotte.png" alt="" class="w-full h-full object-cover filter blur-sm">
+                            </div>
+                            <div class="aspect-[3/4] rounded-lg overflow-hidden">
+                                <img src="https://creatorcoreai.com/influencer-amelia.png" alt="" class="w-full h-full object-cover filter blur-sm">
+                            </div>
+                            <!-- Continue pattern for full background -->
+                            <div class="aspect-[3/4] rounded-lg overflow-hidden">
+                                <img src="https://creatorcoreai.com/influencer-harper.png" alt="" class="w-full h-full object-cover filter blur-sm">
+                            </div>
+                            <div class="aspect-[3/4] rounded-lg overflow-hidden">
+                                <img src="https://creatorcoreai.com/influencer-emma.png" alt="" class="w-full h-full object-cover filter blur-sm">
+                            </div>
+                            <div class="aspect-[3/4] rounded-lg overflow-hidden">
+                                <img src="https://creatorcoreai.com/influencer-sophia.png" alt="" class="w-full h-full object-cover filter blur-sm">
+                            </div>
+                            <div class="aspect-[3/4] rounded-lg overflow-hidden">
+                                <img src="https://creatorcoreai.com/influencer-isabella.png" alt="" class="w-full h-full object-cover filter blur-sm">
+                            </div>
+                            <div class="aspect-[3/4] rounded-lg overflow-hidden">
+                                <img src="https://creatorcoreai.com/influencer-olivia.png" alt="" class="w-full h-full object-cover filter blur-sm">
+                            </div>
+                            <div class="aspect-[3/4] rounded-lg overflow-hidden">
+                                <img src="https://creatorcoreai.com/influencer-ava.png" alt="" class="w-full h-full object-cover filter blur-sm">
+                            </div>
+                            <div class="aspect-[3/4] rounded-lg overflow-hidden">
+                                <img src="https://creatorcoreai.com/influencer-mia.png" alt="" class="w-full h-full object-cover filter blur-sm">
+                            </div>
+                            <div class="aspect-[3/4] rounded-lg overflow-hidden">
+                                <img src="https://creatorcoreai.com/influencer-charlotte.png" alt="" class="w-full h-full object-cover filter blur-sm">
+                            </div>
+                            <div class="aspect-[3/4] rounded-lg overflow-hidden">
+                                <img src="https://creatorcoreai.com/influencer-amelia.png" alt="" class="w-full h-full object-cover filter blur-sm">
+                            </div>
+                            <div class="aspect-[3/4] rounded-lg overflow-hidden">
+                                <img src="https://creatorcoreai.com/influencer-harper.png" alt="" class="w-full h-full object-cover filter blur-sm">
+                            </div>
+                            <div class="aspect-[3/4] rounded-lg overflow-hidden">
+                                <img src="https://creatorcoreai.com/influencer-emma.png" alt="" class="w-full h-full object-cover filter blur-sm">
+                            </div>
+                            <div class="aspect-[3/4] rounded-lg overflow-hidden">
+                                <img src="https://creatorcoreai.com/influencer-sophia.png" alt="" class="w-full h-full object-cover filter blur-sm">
+                            </div>
+                            <div class="aspect-[3/4] rounded-lg overflow-hidden">
+                                <img src="https://creatorcoreai.com/influencer-isabella.png" alt="" class="w-full h-full object-cover filter blur-sm">
+                            </div>
+                            <div class="aspect-[3/4] rounded-lg overflow-hidden">
+                                <img src="https://creatorcoreai.com/influencer-olivia.png" alt="" class="w-full h-full object-cover filter blur-sm">
+                            </div>
+                            <div class="aspect-[3/4] rounded-lg overflow-hidden">
+                                <img src="https://creatorcoreai.com/influencer-ava.png" alt="" class="w-full h-full object-cover filter blur-sm">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="container relative z-10 px-4 md:px-6">
+                        <div class="flex flex-col items-center text-center space-y-4 max-w-3xl mx-auto">
+                            <div class="inline-block rounded-full bg-amber-400/10 px-3 py-1 text-sm text-amber-400 mb-4">AI-Powered Influencer Creation</div>
+                            <h1 class="text-4xl font-bold tracking-tighter sm:text-5xl md:text-5xl lg:text-7xl">Create Your Own AI Influencer In Minutes</h1>
+                            <p class="max-w-[700px] text-white/70 md:text-xl">Use your AI influencer to generate unlimited photo & video content — SFW or NSFW.</p>
+                            
+                            <div class="flex flex-col sm:flex-row gap-4 mt-8">
+                                <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 h-10 bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-black px-8 py-6 text-lg">
+                                    Create an Influencer 
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2 h-4 w-4" aria-hidden="true">
+                                        <path d="m9 18 6-6-6-6"></path>
+                                    </svg>
+                                </button>
+                                <a class="inline-flex items-center justify-center whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border hover:text-accent-foreground h-10 border-white/20 text-white hover:bg-white/10 px-8 py-6 text-lg bg-transparent hover:text-white" href="#pricing">View Pricing</a>
+                            </div>
+
+                            <div class="flex flex-col items-center gap-4 mt-8">
+                                <div class="flex items-center gap-4 text-white/50">
+                                    <div class="flex -space-x-2">
+                                        <div class="w-8 h-8 rounded-full border-2 border-black overflow-hidden">
+                                            <img src="https://creatorcoreai.com/influencer-emma.png" alt="" class="w-full h-full object-cover">
+                                        </div>
+                                        <div class="w-8 h-8 rounded-full border-2 border-black overflow-hidden">
+                                            <img src="https://creatorcoreai.com/influencer-sophia.png" alt="" class="w-full h-full object-cover">
+                                        </div>
+                                        <div class="w-8 h-8 rounded-full border-2 border-black overflow-hidden">
+                                            <img src="https://creatorcoreai.com/influencer-isabella.png" alt="" class="w-full h-full object-cover">
+                                        </div>
+                                        <div class="w-8 h-8 rounded-full border-2 border-black overflow-hidden">
+                                            <img src="https://creatorcoreai.com/influencer-olivia.png" alt="" class="w-full h-full object-cover">
+                                        </div>
+                                        <div class="w-8 h-8 rounded-full border-2 border-black overflow-hidden">
+                                            <img src="https://creatorcoreai.com/influencer-ava.png" alt="" class="w-full h-full object-cover">
+                                        </div>
+                                    </div>
+                                    <div class="text-sm">
+                                        <span class="text-amber-400">1,000+</span> influencers created this week
+                                    </div>
+                                </div>
+                                
+                                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-amber-400/10 to-amber-600/10 border border-amber-400/20">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 text-amber-400" aria-hidden="true">
+                                        <path d="M10 14.66v1.626a2 2 0 0 1-.976 1.696A5 5 0 0 0 7 21.978"></path>
+                                        <path d="M14 14.66v1.626a2 2 0 0 0 .976 1.696A5 5 0 0 1 17 21.978"></path>
+                                        <path d="M18 9h1.5a1 1 0 0 0 0-5H18"></path>
+                                        <path d="M4 22h16"></path>
+                                        <path d="M6 9a6 6 0 0 0 12 0V3a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1z"></path>
+                                        <path d="M6 9H4.5a1 1 0 0 1 0-5H6"></path>
+                                    </svg>
+                                    <span class="text-sm font-medium text-amber-400">#1 AI Influencer Generator</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- How It Works Section -->
+                <section id="how-it-works" class="py-20 bg-zinc-900">
+                    <div class="container px-4 md:px-6">
+                        <div class="flex flex-col items-center justify-center space-y-4 text-center">
+                            <div class="inline-block rounded-full bg-amber-400/10 px-3 py-1 text-sm text-amber-400 mb-4">Simple Process</div>
+                            <h2 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Create Your Influencer In 3 Simple Steps</h2>
+                            <p class="max-w-[700px] text-white/70 md:text-xl">Our intuitive platform makes it easy to generate custom influencers in minutes</p>
+                        </div>
+
+                        <div class="grid gap-8 mt-12 md:grid-cols-3">
+                            <!-- Step 1 -->
+                            <div class="relative">
+                                <div class="hidden md:block absolute top-1/2 right-0 w-full h-0.5 bg-white/10 translate-x-1/2 z-0"></div>
+                                <div class="rounded-lg shadow-sm relative z-10 border-2 border-white/10 bg-black overflow-hidden">
+                                    <div class="p-6">
+                                        <div class="w-16 h-16 rounded-full bg-amber-400/10 flex items-center justify-center mb-4">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-10 w-10 text-amber-400" aria-hidden="true">
+                                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                                            </svg>
+                                        </div>
+                                        <h3 class="text-xl font-bold mb-2 text-white">Describe Your Dream Influencer</h3>
+                                        <p class="text-white/70 mb-4">Start by describing your ideal influencer and uploading 6-15 reference images to train the AI model.</p>
+                                        <div class="rounded-lg overflow-hidden border border-white/10 bg-black/20">
+                                            <img src="https://creatorcoreai.com/step1-describe.png" alt="Describe Your Dream Influencer - Creator Core AI Interface Screenshot" class="w-full h-48 object-cover object-top" loading="lazy">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Step 2 -->
+                            <div class="relative">
+                                <div class="hidden md:block absolute top-1/2 right-0 w-full h-0.5 bg-white/10 translate-x-1/2 z-0"></div>
+                                <div class="rounded-lg shadow-sm relative z-10 border-2 border-white/10 bg-black overflow-hidden">
+                                    <div class="p-6">
+                                        <div class="w-16 h-16 rounded-full bg-amber-400/10 flex items-center justify-center mb-4">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-10 w-10 text-amber-400" aria-hidden="true">
+                                                <line x1="4" x2="4" y1="21" y2="14"></line>
+                                                <line x1="4" x2="4" y1="10" y2="3"></line>
+                                                <line x1="12" x2="12" y1="21" y2="12"></line>
+                                                <line x1="12" x2="12" y1="8" y2="3"></line>
+                                                <line x1="20" x2="20" y1="21" y2="16"></line>
+                                                <line x1="20" x2="20" y1="12" y2="3"></line>
+                                                <line x1="2" x2="6" y1="14" y2="14"></line>
+                                                <line x1="10" x2="14" y1="8" y2="8"></line>
+                                                <line x1="18" x2="22" y1="16" y2="16"></line>
+                                            </svg>
+                                        </div>
+                                        <h3 class="text-xl font-bold mb-2 text-white">Customize With Our Smart Editor</h3>
+                                        <p class="text-white/70 mb-4">Fine-tune age, body type, ethnicity, style, and more with our intuitive customization tools.</p>
+                                        <div class="rounded-lg overflow-hidden border border-white/10 bg-black/20">
+                                            <img src="https://creatorcoreai.com/step2-customize.png" alt="Customize With Our Smart Editor - Creator Core AI Interface Screenshot" class="w-full h-48 object-cover object-top" loading="lazy">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Step 3 -->
+                            <div class="relative">
+                                <div class="rounded-lg shadow-sm relative z-10 border-2 border-white/10 bg-black overflow-hidden">
+                                    <div class="p-6">
+                                        <div class="w-16 h-16 rounded-full bg-amber-400/10 flex items-center justify-center mb-4">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-10 w-10 text-amber-400" aria-hidden="true">
+                                                <rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect>
+                                                <circle cx="9" cy="9" r="2"></circle>
+                                                <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"></path>
+                                            </svg>
+                                        </div>
+                                        <h3 class="text-xl font-bold mb-2 text-white">Generate Stunning Content</h3>
+                                        <p class="text-white/70 mb-4">Create high-quality photos and videos of your influencer in various scenarios and settings.</p>
+                                        <div class="rounded-lg overflow-hidden border border-white/10 bg-black/20">
+                                            <img src="https://creatorcoreai.com/step3-generate.png" alt="Generate Stunning Content - Creator Core AI Interface Screenshot" class="w-full h-48 object-cover object-top" loading="lazy">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Showcase Section -->
+                <section id="showcase" class="py-20">
+                    <div class="container px-4 md:px-6">
+                        <div class="flex flex-col items-center justify-center space-y-4 text-center">
+                            <div class="inline-block rounded-full bg-amber-400/10 px-3 py-1 text-sm text-amber-400 mb-4">Showcase</div>
+                            <h2 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Stunning AI Influencers Created By Our Users</h2>
+                            <p class="max-w-[700px] text-white/70 md:text-xl">Browse through our gallery of AI-generated influencers and get inspired</p>
+                        </div>
+
+                        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-8">
+                            <!-- Influencer Cards Grid -->
+                            <div class="group relative rounded-xl overflow-hidden bg-zinc-900 border border-white/10">
+                                <div class="aspect-[3/4] w-full overflow-hidden">
+                                    <img src="https://creatorcoreai.com/influencer-emma.png" alt="Emma" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                </div>
+                                <div class="absolute top-2 right-2 z-10">
+                                    <div class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-gradient-to-r from-amber-400/90 to-amber-600/90 backdrop-blur-sm">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3 text-black" aria-hidden="true">
+                                            <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path>
+                                        </svg>
+                                        <span class="text-xs font-medium text-black">Verified AI Influencer</span>
+                                    </div>
+                                </div>
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent"></div>
+                                <div class="absolute bottom-0 left-0 right-0 p-4">
+                                    <div class="text-white">
+                                        <h3 class="font-bold text-lg mb-1">Emma 22</h3>
+                                        <p class="text-sm text-white/80 line-clamp-2 leading-relaxed">Fashion lover with a sweet smile ✨ | Coffee addict by day, dreamer by night 🌙 | Let's create something beautiful...</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="group relative rounded-xl overflow-hidden bg-zinc-900 border border-white/10">
+                                <div class="aspect-[3/4] w-full overflow-hidden">
+                                    <img src="https://creatorcoreai.com/influencer-sophia.png" alt="Sophia" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                </div>
+                                <div class="absolute top-2 right-2 z-10">
+                                    <div class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-gradient-to-r from-amber-400/90 to-amber-600/90 backdrop-blur-sm">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3 text-black" aria-hidden="true">
+                                            <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path>
+                                        </svg>
+                                        <span class="text-xs font-medium text-black">Verified AI Influencer</span>
+                                    </div>
+                                </div>
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent"></div>
+                                <div class="absolute bottom-0 left-0 right-0 p-4">
+                                    <div class="text-white">
+                                        <h3 class="font-bold text-lg mb-1">Sophia 21</h3>
+                                        <p class="text-sm text-white/80 line-clamp-2 leading-relaxed">Beach vibes and sunset lover 🌅 | Fitness enthusiast with a passion for adventure 🏃‍♀️ | Living life to the fullest...</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="group relative rounded-xl overflow-hidden bg-zinc-900 border border-white/10">
+                                <div class="aspect-[3/4] w-full overflow-hidden">
+                                    <img src="https://creatorcoreai.com/influencer-isabella.png" alt="Isabella" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                </div>
+                                <div class="absolute top-2 right-2 z-10">
+                                    <div class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-gradient-to-r from-amber-400/90 to-amber-600/90 backdrop-blur-sm">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3 text-black" aria-hidden="true">
+                                            <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path>
+                                        </svg>
+                                        <span class="text-xs font-medium text-black">Verified AI Influencer</span>
+                                    </div>
+                                </div>
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent"></div>
+                                <div class="absolute bottom-0 left-0 right-0 p-4">
+                                    <div class="text-white">
+                                        <h3 class="font-bold text-lg mb-1">Isabella 23</h3>
+                                        <p class="text-sm text-white/80 line-clamp-2 leading-relaxed">Blonde bombshell with a heart of gold 💛 | Art student by day, party starter by night 🎨 | Follow for daily inspiration...</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="group relative rounded-xl overflow-hidden bg-zinc-900 border border-white/10">
+                                <div class="aspect-[3/4] w-full overflow-hidden">
+                                    <img src="https://creatorcoreai.com/influencer-olivia.png" alt="Olivia" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                </div>
+                                <div class="absolute top-2 right-2 z-10">
+                                    <div class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-gradient-to-r from-amber-400/90 to-amber-600/90 backdrop-blur-sm">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3 text-black" aria-hidden="true">
+                                            <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path>
+                                        </svg>
+                                        <span class="text-xs font-medium text-black">Verified AI Influencer</span>
+                                    </div>
+                                </div>
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent"></div>
+                                <div class="absolute bottom-0 left-0 right-0 p-4">
+                                    <div class="text-white">
+                                        <h3 class="font-bold text-lg mb-1">Olivia 20</h3>
+                                        <p class="text-sm text-white/80 line-clamp-2 leading-relaxed">Cozy vibes and warm hugs 🤗 | Bookworm with a wild side 📚 | Student life mixed with spontaneous adventures...</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="group relative rounded-xl overflow-hidden bg-zinc-900 border border-white/10">
+                                <div class="aspect-[3/4] w-full overflow-hidden">
+                                    <img src="https://creatorcoreai.com/influencer-ava.png" alt="Ava" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                </div>
+                                <div class="absolute top-2 right-2 z-10">
+                                    <div class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-gradient-to-r from-amber-400/90 to-amber-600/90 backdrop-blur-sm">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3 text-black" aria-hidden="true">
+                                            <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path>
+                                        </svg>
+                                        <span class="text-xs font-medium text-black">Verified AI Influencer</span>
+                                    </div>
+                                </div>
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent"></div>
+                                <div class="absolute bottom-0 left-0 right-0 p-4">
+                                    <div class="text-white">
+                                        <h3 class="font-bold text-lg mb-1">Ava 24</h3>
+                                        <p class="text-sm text-white/80 line-clamp-2 leading-relaxed">Rooftop sunsets and city lights 🌆 | Travel enthusiast exploring the world ✈️ | Join me on this incredible journey...</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="group relative rounded-xl overflow-hidden bg-zinc-900 border border-white/10">
+                                <div class="aspect-[3/4] w-full overflow-hidden">
+                                    <img src="https://creatorcoreai.com/influencer-mia.png" alt="Mia" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                </div>
+                                <div class="absolute top-2 right-2 z-10">
+                                    <div class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-gradient-to-r from-amber-400/90 to-amber-600/90 backdrop-blur-sm">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3 text-black" aria-hidden="true">
+                                            <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path>
+                                        </svg>
+                                        <span class="text-xs font-medium text-black">Verified AI Influencer</span>
+                                    </div>
+                                </div>
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent"></div>
+                                <div class="absolute bottom-0 left-0 right-0 p-4">
+                                    <div class="text-white">
+                                        <h3 class="font-bold text-lg mb-1">Mia 19</h3>
+                                        <p class="text-sm text-white/80 line-clamp-2 leading-relaxed">Asian beauty with a playful spirit 🌸 | Dance lover and fitness fanatic 💃 | Spreading positivity one post at a time...</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="group relative rounded-xl overflow-hidden bg-zinc-900 border border-white/10">
+                                <div class="aspect-[3/4] w-full overflow-hidden">
+                                    <img src="https://creatorcoreai.com/influencer-charlotte.png" alt="Charlotte" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                </div>
+                                <div class="absolute top-2 right-2 z-10">
+                                    <div class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-gradient-to-r from-amber-400/90 to-amber-600/90 backdrop-blur-sm">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3 text-black" aria-hidden="true">
+                                            <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path>
+                                        </svg>
+                                        <span class="text-xs font-medium text-black">Verified AI Influencer</span>
+                                    </div>
+                                </div>
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent"></div>
+                                <div class="absolute bottom-0 left-0 right-0 p-4">
+                                    <div class="text-white">
+                                        <h3 class="font-bold text-lg mb-1">Charlotte 22</h3>
+                                        <p class="text-sm text-white/80 line-clamp-2 leading-relaxed">Blonde goddess with morning glow ☀️ | Wellness coach and yoga instructor 🧘‍♀️ | Finding balance in a chaotic world...</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="group relative rounded-xl overflow-hidden bg-zinc-900 border border-white/10">
+                                <div class="aspect-[3/4] w-full overflow-hidden">
+                                    <img src="https://creatorcoreai.com/influencer-amelia.png" alt="Amelia" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                </div>
+                                <div class="absolute top-2 right-2 z-10">
+                                    <div class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-gradient-to-r from-amber-400/90 to-amber-600/90 backdrop-blur-sm">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3 text-black" aria-hidden="true">
+                                            <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path>
+                                        </svg>
+                                        <span class="text-xs font-medium text-black">Verified AI Influencer</span>
+                                    </div>
+                                </div>
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent"></div>
+                                <div class="absolute bottom-0 left-0 right-0 p-4">
+                                    <div class="text-white">
+                                        <h3 class="font-bold text-lg mb-1">Amelia 23</h3>
+                                        <p class="text-sm text-white/80 line-clamp-2 leading-relaxed">Kitchen queen with a cozy aesthetic ☕ | Home chef and lifestyle blogger 👩‍🍳 | Making everyday moments magical...</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Pricing Section -->
+                <section id="pricing" class="py-20 bg-zinc-900">
+                    <div class="container px-4 md:px-6">
+                        <div class="flex flex-col items-center justify-center space-y-4 text-center">
+                            <div class="inline-block rounded-full bg-amber-400/10 px-3 py-1 text-sm text-amber-400 mb-4">Pricing</div>
+                            <h2 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Choose Your Plan</h2>
+                            <p class="max-w-[700px] text-white/70 md:text-xl">Select the perfect subscription that fits your content creation needs</p>
+                        </div>
+                        
+                        <div class="grid gap-6 mt-8 md:grid-cols-3">
+                            <!-- Basic Plan -->
+                            <div class="rounded-lg shadow-sm flex flex-col border-2 border-white/10 bg-black text-white">
+                                <div class="flex flex-col space-y-1.5 p-6">
+                                    <h3 class="text-2xl font-semibold leading-none tracking-tight text-white">Basic</h3>
+                                    <div class="flex items-baseline gap-2">
+                                        <div class="text-4xl font-bold text-white">$29.95<span class="text-base font-normal text-white/50">/month</span></div>
+                                        <div class="text-lg font-medium text-white/50 line-through">$59.90</div>
+                                    </div>
+                                    <div class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-green-500/20 border border-green-500/30 w-fit">
+                                        <span class="text-xs font-medium text-green-400">50% OFF</span>
+                                    </div>
+                                    <p class="text-sm text-white/70">Perfect for beginners and small creators</p>
+                                </div>
+                                <div class="p-6 pt-0 flex-1">
+                                    <ul class="space-y-2 text-sm">
+                                        <li class="flex items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 h-4 w-4 text-amber-400" aria-hidden="true">
+                                                <path d="M20 6 9 17l-5-5"></path>
+                                            </svg>
+                                            <span>Access to Influencer Creator</span>
+                                        </li>
+                                        <li class="flex items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 h-4 w-4 text-amber-400" aria-hidden="true">
+                                                <path d="M20 6 9 17l-5-5"></path>
+                                            </svg>
+                                            <span>200 credits/month</span>
+                                        </li>
+                                        <li class="flex items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 h-4 w-4 text-amber-400" aria-hidden="true">
+                                                <path d="M20 6 9 17l-5-5"></path>
+                                            </svg>
+                                            <span>Basic photo generation (SFW only)</span>
+                                        </li>
+                                        <li class="flex items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 h-4 w-4 text-amber-400" aria-hidden="true">
+                                                <path d="M20 6 9 17l-5-5"></path>
+                                            </svg>
+                                            <span>1 influencer slot</span>
+                                        </li>
+                                        <li class="flex items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 h-4 w-4 text-amber-400" aria-hidden="true">
+                                                <path d="M20 6 9 17l-5-5"></path>
+                                            </svg>
+                                            <span>Standard resolution outputs</span>
+                                        </li>
+                                        <li class="flex items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 h-4 w-4 text-amber-400" aria-hidden="true">
+                                                <path d="M20 6 9 17l-5-5"></path>
+                                            </svg>
+                                            <span>Email support</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="flex items-center p-6 pt-0">
+                                    <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 w-full bg-white/10 hover:bg-white/20 text-white">Get Started</button>
+                                </div>
+                            </div>
+
+                            <!-- Pro Plan (Most Popular) -->
+                            <div class="rounded-lg shadow-sm flex flex-col border-2 border-amber-400 bg-gradient-to-b from-amber-400/10 to-transparent relative text-white">
+                                <div class="absolute top-0 right-6 -translate-y-1/2 rounded-full bg-gradient-to-r from-amber-400 to-amber-600 px-3 py-1 text-xs font-medium text-black">Most Popular</div>
+                                <div class="flex flex-col space-y-1.5 p-6">
+                                    <h3 class="text-2xl font-semibold leading-none tracking-tight text-white">Pro</h3>
+                                    <div class="flex items-baseline gap-2">
+                                        <div class="text-4xl font-bold text-white">$69.99<span class="text-base font-normal text-white/50">/month</span></div>
+                                        <div class="text-lg font-medium text-white/50 line-through">$139.98</div>
+                                    </div>
+                                    <div class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-green-500/20 border border-green-500/30 w-fit">
+                                        <span class="text-xs font-medium text-green-400">50% OFF</span>
+                                    </div>
+                                    <p class="text-sm text-white/70">For professional content creators</p>
+                                </div>
+                                <div class="p-6 pt-0 flex-1">
+                                    <ul class="space-y-2 text-sm">
+                                        <li class="flex items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 h-4 w-4 text-amber-400" aria-hidden="true">
+                                                <path d="M20 6 9 17l-5-5"></path>
+                                            </svg>
+                                            <span>Everything in Basic +</span>
+                                        </li>
+                                        <li class="flex items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 h-4 w-4 text-amber-400" aria-hidden="true">
+                                                <path d="M20 6 9 17l-5-5"></path>
+                                            </svg>
+                                            <span>600 credits/month</span>
+                                        </li>
+                                        <li class="flex items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 h-4 w-4 text-amber-400" aria-hidden="true">
+                                                <path d="M20 6 9 17l-5-5"></path>
+                                            </svg>
+                                            <span>NSFW generation unlocked</span>
+                                        </li>
+                                        <li class="flex items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 h-4 w-4 text-amber-400" aria-hidden="true">
+                                                <path d="M20 6 9 17l-5-5"></path>
+                                            </svg>
+                                            <span>Video generation access</span>
+                                        </li>
+                                        <li class="flex items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 h-4 w-4 text-amber-400" aria-hidden="true">
+                                                <path d="M20 6 9 17l-5-5"></path>
+                                            </svg>
+                                            <span>2 influencer slots</span>
+                                        </li>
+                                        <li class="flex items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 h-4 w-4 text-amber-400" aria-hidden="true">
+                                                <path d="M20 6 9 17l-5-5"></path>
+                                            </svg>
+                                            <span>High resolution outputs</span>
+                                        </li>
+                                        <li class="flex items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 h-4 w-4 text-amber-400" aria-hidden="true">
+                                                <path d="M20 6 9 17l-5-5"></path>
+                                            </svg>
+                                            <span>Priority email support</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="flex items-center p-6 pt-0">
+                                    <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 h-10 px-4 py-2 w-full bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-black">Get Started</button>
+                                </div>
+                            </div>
+
+                            <!-- Elite Plan -->
+                            <div class="rounded-lg shadow-sm flex flex-col border-2 border-white/10 bg-black text-white">
+                                <div class="flex flex-col space-y-1.5 p-6">
+                                    <h3 class="text-2xl font-semibold leading-none tracking-tight text-white">Elite</h3>
+                                    <div class="flex items-baseline gap-2">
+                                        <div class="text-4xl font-bold text-white">$129.99<span class="text-base font-normal text-white/50">/month</span></div>
+                                        <div class="text-lg font-medium text-white/50 line-through">$259.98</div>
+                                    </div>
+                                    <div class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-green-500/20 border border-green-500/30 w-fit">
+                                        <span class="text-xs font-medium text-green-400">50% OFF</span>
+                                    </div>
+                                    <p class="text-sm text-white/70">For agencies and power users</p>
+                                </div>
+                                <div class="p-6 pt-0 flex-1">
+                                    <ul class="space-y-2 text-sm">
+                                        <li class="flex items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 h-4 w-4 text-amber-400" aria-hidden="true">
+                                                <path d="M20 6 9 17l-5-5"></path>
+                                            </svg>
+                                            <span>Everything in Pro +</span>
+                                        </li>
+                                        <li class="flex items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 h-4 w-4 text-amber-400" aria-hidden="true">
+                                                <path d="M20 6 9 17l-5-5"></path>
+                                            </svg>
+                                            <span>1500 credits/month</span>
+                                        </li>
+                                        <li class="flex items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 h-4 w-4 text-amber-400" aria-hidden="true">
+                                                <path d="M20 6 9 17l-5-5"></path>
+                                            </svg>
+                                            <span>Priority generation queue</span>
+                                        </li>
+                                        <li class="flex items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 h-4 w-4 text-amber-400" aria-hidden="true">
+                                                <path d="M20 6 9 17l-5-5"></path>
+                                            </svg>
+                                            <span>Multiple influencer slots (5)</span>
+                                        </li>
+                                        <li class="flex items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 h-4 w-4 text-amber-400" aria-hidden="true">
+                                                <path d="M20 6 9 17l-5-5"></path>
+                                            </svg>
+                                            <span>Ultra-high resolution outputs</span>
+                                        </li>
+                                        <li class="flex items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 h-4 w-4 text-amber-400" aria-hidden="true">
+                                                <path d="M20 6 9 17l-5-5"></path>
+                                            </svg>
+                                            <span>API access for integrations</span>
+                                        </li>
+                                        <li class="flex items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 h-4 w-4 text-amber-400" aria-hidden="true">
+                                                <path d="M20 6 9 17l-5-5"></path>
+                                            </svg>
+                                            <span>Dedicated account manager</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="flex items-center p-6 pt-0">
+                                    <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 w-full bg-white/10 hover:bg-white/20 text-white">Get Started</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- CTA Section -->
+                <section class="py-20">
+                    <div class="container px-4 md:px-6">
+                        <div class="relative overflow-hidden rounded-3xl bg-gradient-to-b from-zinc-900 to-black">
+                            <div class="absolute inset-0 bg-grid-white/5 [mask-image:linear-gradient(to_bottom_left,white,transparent,transparent)]"></div>
+                            <div class="relative flex flex-col items-center justify-center space-y-4 p-8 md:p-16 text-center">
+                                <div class="space-y-2">
+                                    <h2 class="text-3xl font-bold mb-4">Start Creating in Under 2 Minutes</h2>
+                                    <p class="max-w-[600px] text-white/70 md:text-xl mx-auto">Join thousands of creators who are already building their AI influencer empire</p>
+                                </div>
+                                <div class="flex flex-col sm:flex-row gap-4 mt-8">
+                                    <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors h-10 bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-black px-8 py-6 text-lg">
+                                        Get Started Now
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2 h-4 w-4" aria-hidden="true">
+                                            <path d="m9 18 6-6-6-6"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FAQ Section -->
+                <section id="faq" class="py-20 bg-zinc-900">
+                    <div class="container px-4 md:px-6">
+                        <div class="flex flex-col items-center justify-center space-y-4 text-center">
+                            <div class="inline-block rounded-full bg-amber-400/10 px-3 py-1 text-sm text-amber-400 mb-4">FAQ</div>
+                            <h2 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Frequently Asked Questions</h2>
+                            <p class="max-w-[700px] text-white/70 md:text-xl">Find answers to common questions about Lustify AI</p>
+                        </div>
+                        
+                        <div class="max-w-3xl mx-auto mt-8">
+                            <div class="w-full space-y-4">
+                                <div>
+                                    <h3 class="flex">
+                                        <button type="button" class="flex flex-1 items-center justify-between py-4 px-6 text-lg font-medium transition-all hover:underline text-white hover:text-amber-400 cursor-pointer bg-black/50 hover:bg-black/70 rounded-lg">
+                                            Can I use this for SFW content only?
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 shrink-0 transition-transform duration-200" aria-hidden="true">
+                                                <path d="m6 9 6 6 6-6"></path>
+                                            </svg>
+                                        </button>
+                                    </h3>
+                                </div>
+                                
+                                <div>
+                                    <h3 class="flex">
+                                        <button type="button" class="flex flex-1 items-center justify-between py-4 px-6 text-lg font-medium transition-all hover:underline text-white hover:text-amber-400 cursor-pointer bg-black/50 hover:bg-black/70 rounded-lg">
+                                            How does credit usage work?
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 shrink-0 transition-transform duration-200" aria-hidden="true">
+                                                <path d="m6 9 6 6 6-6"></path>
+                                            </svg>
+                                        </button>
+                                    </h3>
+                                </div>
+                                
+                                <div>
+                                    <h3 class="flex">
+                                        <button type="button" class="flex flex-1 items-center justify-between py-4 px-6 text-lg font-medium transition-all hover:underline text-white hover:text-amber-400 cursor-pointer bg-black/50 hover:bg-black/70 rounded-lg">
+                                            What's the difference between plans?
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 shrink-0 transition-transform duration-200" aria-hidden="true">
+                                                <path d="m6 9 6 6 6-6"></path>
+                                            </svg>
+                                        </button>
+                                    </h3>
+                                </div>
+                                
+                                <div>
+                                    <h3 class="flex">
+                                        <button type="button" class="flex flex-1 items-center justify-between py-4 px-6 text-lg font-medium transition-all hover:underline text-white hover:text-amber-400 cursor-pointer bg-black/50 hover:bg-black/70 rounded-lg">
+                                            Can I upgrade anytime?
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 shrink-0 transition-transform duration-200" aria-hidden="true">
+                                                <path d="m6 9 6 6 6-6"></path>
+                                            </svg>
+                                        </button>
+                                    </h3>
+                                </div>
+                                
+                                <div>
+                                    <h3 class="flex">
+                                        <button type="button" class="flex flex-1 items-center justify-between py-4 px-6 text-lg font-medium transition-all hover:underline text-white hover:text-amber-400 cursor-pointer bg-black/50 hover:bg-black/70 rounded-lg">
+                                            Is my data private and secure?
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 shrink-0 transition-transform duration-200" aria-hidden="true">
+                                                <path d="m6 9 6 6 6-6"></path>
+                                            </svg>
+                                        </button>
+                                    </h3>
+                                </div>
+                                
+                                <div>
+                                    <h3 class="flex">
+                                        <button type="button" class="flex flex-1 items-center justify-between py-4 px-6 text-lg font-medium transition-all hover:underline text-white hover:text-amber-400 cursor-pointer bg-black/50 hover:bg-black/70 rounded-lg">
+                                            Do I own the content I create?
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 shrink-0 transition-transform duration-200" aria-hidden="true">
+                                                <path d="m6 9 6 6 6-6"></path>
+                                            </svg>
+                                        </button>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+            <!-- Footer -->
+            <footer class="border-t border-white/10 py-12 bg-black">
+                <div class="container px-4 md:px-6">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-2">
+                                <span class="font-bold text-xl">
+                                    <span class="text-white">lustify</span><span class="text-amber-400">ai</span>
+                                </span>
+                            </div>
+                            <p class="text-sm text-white/50">Creating the future of digital influence, one AI at a time.</p>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <h4 class="font-medium">Product</h4>
+                            <ul class="space-y-2 text-sm">
+                                <li><a class="text-white/50 hover:text-white" href="#how-it-works">How It Works</a></li>
+                                <li><a class="text-white/50 hover:text-white" href="#pricing">Pricing</a></li>
+                                <li><a class="text-white/50 hover:text-white" href="#showcase">Showcase</a></li>
+                                <li><a class="text-white/50 hover:text-white" href="#">API</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <h4 class="font-medium">Company</h4>
+                            <ul class="space-y-2 text-sm">
+                                <li><a class="text-white/50 hover:text-white" href="https://creatorcoreai.com/about">About</a></li>
+                                <li><a class="text-white/50 hover:text-white" href="#">Blog</a></li>
+                                <li><a class="text-white/50 hover:text-white" href="#">Careers</a></li>
+                                <li><a class="text-white/50 hover:text-white" href="https://creatorcoreai.com/contact">Contact</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <h4 class="font-medium">Legal</h4>
+                            <ul class="space-y-2 text-sm">
+                                <li><a class="text-white/50 hover:text-white" href="https://creatorcoreai.com/terms-of-service">Terms</a></li>
+                                <li><a class="text-white/50 hover:text-white" href="https://creatorcoreai.com/privacy-policy">Privacy</a></li>
+                                <li><a class="text-white/50 hover:text-white" href="#">Cookies</a></li>
+                                <li><a class="text-white/50 hover:text-white" href="#">Licenses</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center">
+                        <p class="text-sm text-white/50">© 2025 Lustify AI. All rights reserved.</p>
+                        <div class="flex items-center gap-4 mt-4 md:mt-0">
+                            <a class="text-white/50 hover:text-white" href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                                </svg>
+                                <span class="sr-only">Facebook</span>
+                            </a>
+                            <a class="text-white/50 hover:text-white" href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                                    <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+                                </svg>
+                                <span class="sr-only">Instagram</span>
+                            </a>
+                            <a class="text-white/50 hover:text-white" href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                                    <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+                                </svg>
+                                <span class="sr-only">Twitter</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </main>
 </body>
 </html>
