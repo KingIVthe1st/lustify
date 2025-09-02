@@ -19,8 +19,23 @@ const app = express();
 app.use(helmet());
 
 // CORS configuration
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://kingivthe1st.github.io',
+  process.env.FRONTEND_URL
+].filter(Boolean);
+
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
@@ -102,8 +117,8 @@ app.use((error, req, res, next) => {
   });
 });
 
-// Database connection
-const startServer = async () => {
+// Initialize database connection
+const initializeDatabase = async () => {
   try {
     await sequelize.authenticate();
     console.log('Database connection established successfully.');
@@ -113,20 +128,13 @@ const startServer = async () => {
       console.log('Database synchronized.');
     }
     
-    const PORT = process.env.PORT || 3001;
-    app.listen(PORT, () => {
-      console.log(`Server running on port ${PORT}`);
-      console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
-    });
-    
   } catch (error) {
-    console.error('Unable to start server:', error);
-    process.exit(1);
+    console.error('Unable to connect to database:', error);
+    throw error;
   }
 };
 
-if (require.main === module) {
-  startServer();
-}
+// Initialize database when app starts
+initializeDatabase().catch(console.error);
 
 module.exports = app;
