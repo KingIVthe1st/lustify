@@ -1,0 +1,163 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: lustify-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME:-lustify_ai}
+      POSTGRES_USER: ${DB_USERNAME:-lustify_user}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-changeme123}
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./scripts/init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+    networks:
+      - lustify-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME:-lustify_user} -d ${DB_NAME:-lustify_ai}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Redis (for caching and sessions)
+  redis:
+    image: redis:7-alpine
+    container_name: lustify-redis
+    restart: unless-stopped
+    command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD:-redispassword123}
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - lustify-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "--raw", "incr", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Main Application
+  app:
+    build: .
+    container_name: lustify-backend
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      NODE_ENV: ${NODE_ENV:-production}
+      PORT: 3001
+      
+      # Database
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: ${DB_NAME:-lustify_ai}
+      DB_USERNAME: ${DB_USERNAME:-lustify_user}
+      DB_PASSWORD: ${DB_PASSWORD:-changeme123}
+      
+      # Redis
+      REDIS_URL: redis://:${REDIS_PASSWORD:-redispassword123}@redis:6379
+      
+      # JWT
+      JWT_SECRET: ${JWT_SECRET:-your-super-secret-jwt-key-change-this-in-production}
+      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN:-7d}
+      
+      # Grok AI
+      GROK_API_KEY: ${GROK_API_KEY}
+      GROK_API_URL: ${GROK_API_URL:-https://api.x.ai/v1}
+      
+      # Stripe
+      STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY}
+      STRIPE_PUBLISHABLE_KEY: ${STRIPE_PUBLISHABLE_KEY}
+      STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET}
+      
+      # File Storage (AWS S3 or compatible)
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      AWS_REGION: ${AWS_REGION:-us-east-1}
+      AWS_S3_BUCKET: ${AWS_S3_BUCKET}
+      
+      # Email Service
+      SMTP_HOST: ${SMTP_HOST}
+      SMTP_PORT: ${SMTP_PORT:-587}
+      SMTP_USER: ${SMTP_USER}
+      SMTP_PASSWORD: ${SMTP_PASSWORD}
+      FROM_EMAIL: ${FROM_EMAIL}
+      
+      # Frontend URL
+      FRONTEND_URL: ${FRONTEND_URL:-http://localhost:3000}
+      
+    ports:
+      - "${APP_PORT:-3001}:3001"
+    volumes:
+      - ./uploads:/app/uploads
+    networks:
+      - lustify-network
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3001/health', (res) => process.exit(res.statusCode === 200 ? 0 : 1))"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Nginx (Production reverse proxy)
+  nginx:
+    image: nginx:alpine
+    container_name: lustify-nginx
+    restart: unless-stopped
+    depends_on:
+      - app
+    ports:
+      - "${NGINX_PORT:-80}:80"
+      - "${NGINX_SSL_PORT:-443}:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+      - ./nginx/logs:/var/log/nginx
+    networks:
+      - lustify-network
+    profiles:
+      - production
+
+  # Database backup service
+  db-backup:
+    image: postgres:15-alpine
+    container_name: lustify-db-backup
+    restart: "no"
+    depends_on:
+      - postgres
+    environment:
+      PGHOST: postgres
+      PGPORT: 5432
+      PGDATABASE: ${DB_NAME:-lustify_ai}
+      PGUSER: ${DB_USERNAME:-lustify_user}
+      PGPASSWORD: ${DB_PASSWORD:-changeme123}
+    volumes:
+      - ./backups:/backups
+    networks:
+      - lustify-network
+    profiles:
+      - backup
+    command: |
+      sh -c '
+        echo "Starting database backup..."
+        pg_dump -h postgres -U ${DB_USERNAME:-lustify_user} -d ${DB_NAME:-lustify_ai} > /backups/backup_$$(date +%Y%m%d_%H%M%S).sql
+        echo "Backup completed successfully"
+      '
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+
+networks:
+  lustify-network:
+    driver: bridge

@@ -1,0 +1,70 @@
+# Dependencies
+node_modules
+npm-debug.log*
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE files
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Git
+.git
+.gitignore
+
+# Docker
+docker-compose.yml
+docker-compose.*.yml
+Dockerfile
+.dockerignore
+
+# Logs
+logs
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage
+
+# Database files
+*.sqlite
+*.db
+
+# Uploads (will be mounted as volume)
+uploads
+
+# Backups
+backups
+
+# Documentation
+README.md
+docs
+
+# Test files
+test
+tests
+__tests__
+*.test.js
+*.spec.js
+
+# Development tools
+.nyc_output
+.eslintrc*
+.prettierrc*
+jest.config.js
