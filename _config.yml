@@ -1,0 +1,29 @@
+# GitHub Pages configuration for Lustify AI
+title: "Lustify AI"
+description: "AI Avatar Content Generation Platform"
+url: "https://kingivthe1st.github.io"
+baseurl: "/lustify"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+# Exclude files from processing
+exclude:
+  - node_modules/
+  - src/
+  - package.json
+  - package-lock.json
+  - Dockerfile
+  - docker-compose.yml
+  - README.md
+  - .env.example
+  - .github/
+  - scripts/
+
+# Include files
+include:
+  - index.html
